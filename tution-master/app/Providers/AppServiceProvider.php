@@ -1,9 +1,23 @@
 <?php
 
 namespace App\Providers;
-
 use Illuminate\Support\ServiceProvider;
-
+use App\Services\UserServiceInterface;
+use App\Services\UserService;
+use App\Repositories\UserRepositoryInterface;
+use App\Repositories\UserRepository;
+use App\Repositories\AssignmentRepositoryInterface;
+use App\Repositories\AssignmentRepository;
+use App\Services\AssignmentServiceInterface;
+use App\Services\AssignmentService;
+use App\Repositories\GradeRepositoryInterface;
+use App\Repositories\GradeRepository;
+use App\Services\GradeServiceInterface;
+use App\Services\GradeService;
+use App\Repositories\NoteRepositoryInterface;
+use App\Repositories\NoteRepository;
+use App\Services\NoteServiceInterface;
+use App\Services\NoteService;
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -11,7 +25,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->app->bind(UserServiceInterface::class, UserService::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(AssignmentServiceInterface::class, AssignmentService::class);
+        $this->app->bind(AssignmentRepositoryInterface::class, AssignmentRepository::class);
+        $this->app->bind(GradeServiceInterface::class, GradeService::class);
+        $this->app->bind(GradeRepositoryInterface::class,GradeRepository::class);
+        $this->app->bind(NoteServiceInterface::class, NoteService::class);
+        $this->app->bind(NoteRepositoryInterface::class,NoteRepository::class);
     }
 
     /**

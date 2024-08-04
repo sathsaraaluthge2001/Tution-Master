@@ -20,6 +20,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'contact',
+        'address',
     ];
 
     /**
@@ -44,4 +46,41 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function announcements()
+    {
+        return $this->hasMany(Announcement::class);
+    }
+
+    public function assignments()
+    {
+        return $this->hasMany(Assignment::class);
+    }
+
+    public function papers()
+    {
+        return $this->hasMany(Paper::class);
+    }
+
+    public function tutes()
+    {
+        return $this->hasMany(Tute::class);
+    }
+
+    public function notes()
+    {
+        return $this->hasMany(Note::class);
+    }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
+    public function hasRole($role)
+{
+    // Assuming you have a `role` column in your users table
+    return $this->role === $role;
+}
+
 }
