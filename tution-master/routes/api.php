@@ -4,6 +4,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\NoteController;
+use App\Http\Middleware\CheckRole;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -35,8 +36,10 @@ Route::prefix('grades')->group(function () {
 
 Route::prefix('assignments')->group(function () {
     Route::get('/', [AssignmentController::class, 'index']);
-    Route::get('/{id}', [AssignmentController::class, 'show']);
-    Route::post('/', [AssignmentController::class, 'store']);
-    Route::put('/{id}', [AssignmentController::class, 'update']);
-    Route::delete('/{id}', [AssignmentController::class, 'destroy']);
+        Route::get('/{id}', [AssignmentController::class, 'show']);
+        Route::post('/', [AssignmentController::class, 'store']);
+        Route::put('/{id}', [AssignmentController::class, 'update']);
+        Route::delete('/{id}', [AssignmentController::class, 'destroy']);
 });
+
+
