@@ -23,6 +23,14 @@ use App\Repositories\PaperRepositoryInterface;
 use App\Repositories\PaperRepository;
 use App\Services\PaperServiceInterface;
 use App\Services\PaperService;
+use App\Repositories\EnrollmentRepositoryInterface;
+use App\Repositories\EnrollmentRepository;
+use App\Services\EnrollmentServiceInterface;
+use App\Services\EnrollmentService;
+use App\Repositories\AdsRepositoryInterface;
+use App\Repositories\AdsRepository;
+use App\Services\AdsServiceInterface;
+use App\Services\AdsService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,14 +41,25 @@ class AppServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserServiceInterface::class, UserService::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+
         $this->app->bind(AssignmentServiceInterface::class, AssignmentService::class);
         $this->app->bind(AssignmentRepositoryInterface::class, AssignmentRepository::class);
+
         $this->app->bind(GradeServiceInterface::class, GradeService::class);
         $this->app->bind(GradeRepositoryInterface::class, GradeRepository::class);
+
         $this->app->bind(NoteServiceInterface::class, NoteService::class);
         $this->app->bind(NoteRepositoryInterface::class, NoteRepository::class);
+
         $this->app->bind(PaperServiceInterface::class, PaperService::class);
         $this->app->bind(PaperRepositoryInterface::class, PaperRepository::class);
+        
+        $this->app->bind(EnrollmentRepositoryInterface::class, EnrollmentRepository::class);
+        $this->app->bind(EnrollmentServiceInterface::class, EnrollmentService::class);
+
+        $this->app->bind(AdsRepositoryInterface::class, AdsRepository::class);
+        $this->app->bind(AdsServiceInterface::class, AdsService::class);
+        
     }
 
     /**

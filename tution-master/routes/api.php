@@ -6,6 +6,8 @@ use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\PaperController;
+use App\Http\Controllers\EnrollmentController;
+use App\Http\Controllers\AdsController;
 use Illuminate\Http\Request;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -18,6 +20,14 @@ Route::prefix('users')->group(function () {
     Route::post('/', [UserController::class, 'store']);
     Route::put('/{id}', [UserController::class, 'update']);
     Route::delete('/{id}', [UserController::class, 'destroy']);
+});
+
+Route::prefix('ads')->group(function () {
+    Route::get('/', [AdsController::class, 'index']);
+    Route::get('/{id}', [AdsController::class, 'show']);
+    Route::post('/', [AdsController::class, 'store']);
+    Route::put('/{id}', [AdsController::class, 'update']);
+    Route::delete('/{id}', [AdsController::class, 'destroy']);
 });
 
 Route::prefix('notes')->group(function () {
@@ -51,3 +61,12 @@ Route::prefix('assignments')->group(function () {
     Route::put('/{id}', [AssignmentController::class, 'update']);
     Route::delete('/{id}', [AssignmentController::class, 'destroy']);
 });
+
+Route::prefix('enrollments')->group(function () {
+    Route::get('/', [EnrollmentController::class, 'index']);
+    Route::get('/{id}', [EnrollmentController::class, 'show']);
+    Route::post('/', [EnrollmentController::class, 'store']);
+    Route::put('/{id}', [EnrollmentController::class, 'update']);
+    Route::delete('/{id}', [EnrollmentController::class, 'destroy']);
+});
+
