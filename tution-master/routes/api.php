@@ -1,14 +1,16 @@
 <?php
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssignmentController;
 use App\Http\Controllers\GradeController;
 use App\Http\Controllers\NoteController;
-use App\Http\Middleware\CheckRole;
+use App\Http\Controllers\PaperController;
+use Illuminate\Http\Request;
 
-Route::get('/user', function (Request $request) {
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+});
 
 Route::prefix('users')->group(function () {
     Route::get('/', [UserController::class, 'index']);
@@ -34,12 +36,18 @@ Route::prefix('grades')->group(function () {
     Route::delete('/{id}', [GradeController::class, 'destroy']);
 });
 
-Route::prefix('assignments')->group(function () {
-    Route::get('/', [AssignmentController::class, 'index']);
-        Route::get('/{id}', [AssignmentController::class, 'show']);
-        Route::post('/', [AssignmentController::class, 'store']);
-        Route::put('/{id}', [AssignmentController::class, 'update']);
-        Route::delete('/{id}', [AssignmentController::class, 'destroy']);
+Route::prefix('papers')->group(function () {
+    Route::get('/', [PaperController::class, 'index']);
+    Route::get('/{id}', [PaperController::class, 'show']);
+    Route::post('/', [PaperController::class, 'store']);
+    Route::put('/{id}', [PaperController::class, 'update']);
+    Route::delete('/{id}', [PaperController::class, 'destroy']);
 });
 
-
+Route::prefix('assignments')->group(function () {
+    Route::get('/', [AssignmentController::class, 'index']);
+    Route::get('/{id}', [AssignmentController::class, 'show']);
+    Route::post('/', [AssignmentController::class, 'store']);
+    Route::put('/{id}', [AssignmentController::class, 'update']);
+    Route::delete('/{id}', [AssignmentController::class, 'destroy']);
+});

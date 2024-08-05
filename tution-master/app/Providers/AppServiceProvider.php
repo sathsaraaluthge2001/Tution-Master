@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Providers;
+
 use Illuminate\Support\ServiceProvider;
 use App\Services\UserServiceInterface;
 use App\Services\UserService;
@@ -18,6 +19,11 @@ use App\Repositories\NoteRepositoryInterface;
 use App\Repositories\NoteRepository;
 use App\Services\NoteServiceInterface;
 use App\Services\NoteService;
+use App\Repositories\PaperRepositoryInterface;
+use App\Repositories\PaperRepository;
+use App\Services\PaperServiceInterface;
+use App\Services\PaperService;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -30,9 +36,11 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(AssignmentServiceInterface::class, AssignmentService::class);
         $this->app->bind(AssignmentRepositoryInterface::class, AssignmentRepository::class);
         $this->app->bind(GradeServiceInterface::class, GradeService::class);
-        $this->app->bind(GradeRepositoryInterface::class,GradeRepository::class);
+        $this->app->bind(GradeRepositoryInterface::class, GradeRepository::class);
         $this->app->bind(NoteServiceInterface::class, NoteService::class);
-        $this->app->bind(NoteRepositoryInterface::class,NoteRepository::class);
+        $this->app->bind(NoteRepositoryInterface::class, NoteRepository::class);
+        $this->app->bind(PaperServiceInterface::class, PaperService::class);
+        $this->app->bind(PaperRepositoryInterface::class, PaperRepository::class);
     }
 
     /**
