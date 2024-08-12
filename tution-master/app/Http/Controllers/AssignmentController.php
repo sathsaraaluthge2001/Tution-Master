@@ -33,8 +33,17 @@ class AssignmentController extends Controller
     public function store(Request $request)
     {
         $data = $request->all();
-        $user = $this->assignmentService->createAssignment($data);
-        return response()->json($user, 201);
+
+        // Handle file upload
+    if ($request->hasFile('file')) {
+        $file = $request->file('file');
+        $filename = time() . '_' . $file->getClientOriginalName();
+        $path = $file->storeAs('uploads/assignments', $filename, 'public');
+        $data['file_path'] = $path; // Add file path to data
+    }
+
+        $assignment  = $this->assignmentService->createAssignment($data);
+        return redirect()->back()->with('success', 'Assignment added successfully.');
     }
 
     public function update(Request $request, $id)
