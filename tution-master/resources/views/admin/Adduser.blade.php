@@ -45,12 +45,13 @@
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
-            @if(session('error'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
+            @if(session('unsuccess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('unsuccess') }}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             @endif
+           
                         
               <p class="text-uppercase text-sm">User Information</p>
               <form action="{{url('users')}}" method="POST" enctype="multipart/form-data">

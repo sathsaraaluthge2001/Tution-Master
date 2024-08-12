@@ -32,12 +32,8 @@ class UserController extends Controller
                 $data = $request->all();
                 $user = $this->userService->createUser($data);
                 return redirect()->back()->with('success', 'User added successfully.');
-            } catch (QueryException $e) {
-                if ($e->errorInfo[1] == 1062) {
-                    // Duplicate entry error code
-                    return redirect()->back()->with('error', 'Email address already exists.');
-                }
-                return redirect()->back()->with('error', 'An error occurred. Please try again.');
+            } catch (\Exception $e) {
+                return redirect()->back()->with('unsuccess', 'User not added.');
             }
         }
 
