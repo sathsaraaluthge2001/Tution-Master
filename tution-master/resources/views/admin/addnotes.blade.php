@@ -40,44 +40,56 @@
               </div>
             </div>
             <div class="card-body">
+              <!-- Display success message -->
+                        @if(session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
               <p class="text-uppercase text-sm">Notes Information</p>
+              <form action="{{ url('notes') }}"method="POST" enctype="multipart/form-data">
+              @csrf
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">User Id:</label>
-                    <input class="form-control" type="text" value="lucky.jesse">
+                    <input class="form-control" type="text"  name="user_id">
                   </div>
                 </div>
                 <div class="col-md-6">
                         <div class="form-group">
                             <label for="grade-select" class="form-control-label">Grade</label>
-                            <select class="form-control" id="grade-select">
-                                <option value="10">Grade 10</option>
-                                <option value="11">Grade 11</option>
-                                <option value="12">Grade 12</option>
-                                <option value="13">Grade 13</option>
+                            <select class="form-control" id="grade-select" name="grade_id">
+                                <option value="2">Grade 10</option>
+                                <option value="3">Grade 11</option>
+                                <option value="5">Grade 12</option>
+                                <option value="4">Grade 13</option>
                             </select>
                         </div>
                     </div>
                 <div class="col-md-6">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Title</label>
-                    <input class="form-control" type="text" value="Jesse">
+                    <input class="form-control" type="text" name="title">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Description</label>
-                    <input class="form-control" type="text" value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09">
+                    <input class="form-control" type="text" name="description">
                   </div>
                 </div>
                 <div class="col-md-12">
                   <div class="form-group">
                     <label for="example-text-input" class="form-control-label">Upload File</label>
-                    <input class="form-control" type="file" >
+                    <input class="form-control" type="file" name="file">
+                  </div>
+                  <div class="col-md-12">
+                      <button type="submit" class="btn btn-success">Add Note</button>
                   </div>
                 </div>
             </div>
+            </form>
           </div>
         </div>
     </div>

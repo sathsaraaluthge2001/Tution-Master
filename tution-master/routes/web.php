@@ -62,3 +62,27 @@ Route::prefix('assignments')->group(function () {
     Route::put('/{id}', [AssignmentController::class, 'update']);
     Route::delete('/{id}', [AssignmentController::class, 'destroy']);
 });
+
+Route::prefix('notes')->group(function () {
+    Route::get('/', [NoteController::class, 'index']);
+    Route::get('/{id}', [NoteController::class, 'show']);
+    Route::post('/', [NoteController::class, 'store']);
+    Route::put('/{id}', [NoteController::class, 'update']);
+    Route::delete('/{id}', [NoteController::class, 'destroy']);
+});
+
+Route::prefix('papers')->group(function () {
+    Route::get('/', [PaperController::class, 'index']);
+    Route::get('/{id}', [PaperController::class, 'show']);
+    Route::post('/', [PaperController::class, 'store']);
+    Route::put('/{id}', [PaperController::class, 'update']);
+    Route::delete('/{id}', [PaperController::class, 'destroy']);
+});
+
+Route::prefix('users')->group(function () {
+    Route::get('/', [UserController::class, 'index']);
+    Route::get('/{id}', [UserController::class, 'show']);
+    Route::post('/', [UserController::class, 'store']);
+    Route::put('/{id}', [UserController::class, 'update']);
+    Route::delete('/{id}', [UserController::class, 'destroy']);
+});

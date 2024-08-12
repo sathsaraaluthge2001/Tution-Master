@@ -27,20 +27,17 @@ class NoteController extends Controller
 
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|string|max:255',
-            'description' => 'required|string',
-            'file_path' => 'nullable|string',
-            'grade_id' => 'required|integer',
-            'user_id' => 'required|integer',
-        ]);
+        $data = $request->all();
 
-        try {
-            $note = $this->noteService->createNote($validatedData);
-            return response()->json(['success' => 'Note created successfully', 'note' => $note], 201);
-        } catch (\Exception $e) {
-            return response()->json(['error' => 'Failed to create note', 'message' => $e->getMessage()], 500);
+        if ($request->hasFile('file')) {
+            $file = $request->file('file');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $path = $file->storeAs('uploads/notes', $filename, 'public');
+            $data['file_path'] = $path; // Add file path to data
         }
+
+        $note  = $this->noteService->createNote($data);
+        return redirect()->back()->with('success', 'Note added successfully.');
     }
 
     public function update(Request $request, $id)
